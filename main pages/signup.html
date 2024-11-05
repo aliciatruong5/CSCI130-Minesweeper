@@ -1,1 +1,83 @@
 <!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- add css file below -->
+        <link rel="stylesheet" href="">
+    </head>
+
+    <body>
+
+        <div class="form">
+
+            <h1 class="createaccount_heading">Create an account</h1>
+        
+            <form class ="input_fields" action="signup" method="post" name="signupForm">
+                <!-- enter first name -->
+                <input type="text" id="fname" name="fname" placeholder="First name" required>
+        
+                <!-- enter last name -->
+                <input type="text" id="lname" name="lname" placeholder="Last name" required>
+        
+                <!-- enter email address -->
+                <input type="text" id="email" name="email" placeholder="Email address" required>
+        
+                <!-- create password -->
+                <input type="password" id="create-password" name="password" placeholder="Create password" required>
+        
+                <!-- confirm password-->
+                <input type="password" id="cfrmpassword" name="cfrmpassword" placeholder="Confirm password" required>
+        
+                <!-- Validation message -->
+                <div id="validation-message" style="color: rgb(255, 255, 255); margin-top: 10px;"></div>
+        
+                <!-- Password criteria -->
+                <!-- Upon creation, password must contain: -->
+                <!-- Length of 8-16 characters -->
+                <!-- At least one uppercase letter -->
+                <!-- At least one number -->
+                <!-- At least one special character -->
+                <button class="createaccount" onclick="validatePassword(event)">Create account</button> 
+                
+            </form>
+        
+            <script>
+                function validatePassword(event) {
+                    // prevents form submission for validation
+                    event.preventDefault();
+                    
+                    // get input values
+                    const password = document.getElementById('create-password').value;
+                    const confirmPassword = document.getElementById('cfrmpassword').value;
+                    const validationMessage = document.getElementById('validation-message');
+                    
+                    // reg expression for password validation
+                    const regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,16}$/;
+            
+                    // check if password meets criteria
+                    if (!regex.test(password)) {
+                        validationMessage.textContent = 
+                            'Password must be 8-16 characters, include at least one uppercase letter, one number, and one special character.';
+                        return;  // Stops execution if criteria are not met
+                    }
+            
+                    // check if confirmed password matches the created password
+                    if (password !== confirmPassword) {
+                        validationMessage.textContent = 'Passwords do not match';
+                        return;
+                    }
+            
+                    // clear error message if everything is good
+                    validationMessage.textContent = '';
+                    //submit the signup form
+                    document.signupForm.submit();
+        
+                }
+            </script>
+        
+        </div>
+
+    </body>
+
+   
