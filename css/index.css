@@ -35,13 +35,13 @@ nav ul li a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh; /* Full viewport height */
+    height: 100vh; 
 }
 
-.play-game-button {
+.playgamebutton {
     display: inline-block;
     padding: 15px 30px;
-    background-color: #0073e6; /* Fresno State theme color */
+    background-color: #0073e6; 
     color: white;
     font-size: 20px;
     font-weight: bold;
@@ -50,6 +50,6 @@ nav ul li a:hover {
     transition: background-color 0.3s;
 }
 
-.play-game-button:hover {
-    background-color: #005bb5; /* Darker shade on hover */
+.playgamebutton:hover {
+    background-color: #005bb5; 
 }
