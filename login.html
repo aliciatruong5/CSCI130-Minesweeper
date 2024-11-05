@@ -1,1 +1,36 @@
 <!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="interactive map">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+
+        <div class="form">
+
+            <h1 class="login_heading">Login to account</h1>
+        
+            <form class="input_fields" method="post">
+        
+                <label for="email">Email</label>
+                <input type="text" id="email" name="email">
+        
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password">
+        
+                <div class="not_registered">
+                    <p>
+                        Not registered?
+                        <a href="signup.html">Create your account</a>
+                    </p>
+                </div>
+        
+                <button class="signin" onclick="window.location.href='login.html'">Sign in</button>
+        
+            </form>
+        
+        </div>
+    </body>
+</html>
