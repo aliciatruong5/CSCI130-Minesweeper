@@ -1,45 +1,57 @@
 <?php
-// database configuration
+// Start session to handle error/success messages
+session_start();
+
+// Database configuration
 $servername = "localhost";
 $username = "root";
 $password = ""; 
 $dbname = "user_accounts";
 
-// create a connection
+// Create a connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// check the connection
+// Check the connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// check if form data is submitted
+// Check if form data is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Input sanitization
     $firstName = htmlspecialchars(trim($_POST['fname']));
     $lastName = htmlspecialchars(trim($_POST['lname']));
     $email = htmlspecialchars(trim($_POST['email']));
     $password = htmlspecialchars(trim($_POST['password']));
 
-    // hash the password
-    $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-
-    // insert data into SQL
-    $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, email, password) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("ssss", $firstName, $lastName, $email, $hashedPassword);
-
-    // execute the statement
-    if ($stmt->execute()) {
-        echo "Account created successfully!";
+    // Validate email only
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $_SESSION['error'] = "Invalid email format.";
     } else {
-        if ($conn->errno === 1062) { // duplicate entry error code
-            echo "Error: This email is already registered.";
+        // Hash the password
+        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+
+        // Insert into the database
+        $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, email, password) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("ssss", $firstName, $lastName, $email, $hashedPassword);
+
+        if ($stmt->execute()) {
+            $_SESSION['success'] = "Account created successfully!";
         } else {
-            echo "Error: " . $stmt->error;
+            if ($conn->errno === 1062) { // Duplicate email
+                $_SESSION['error'] = "This email is already registered.";
+            } else {
+                $_SESSION['error'] = "Database error: " . $stmt->error;
+            }
         }
+
+        $stmt->close();
     }
 
-    // close the statement and connection
-    $stmt->close();
     $conn->close();
+
+    // Redirect to signup form
+    header("Location: signup.html");
+    exit();
 }
 ?>
