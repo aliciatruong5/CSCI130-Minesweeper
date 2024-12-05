@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play Game</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="mainMenu.html">Home</a></li>
+            <li><a href="gameIndex.html">Return to Mode Selection </a></li>
+            <li><a href="leaderboard.html">Leaderboard</a></li>
+        </ul>
+    </nav>
+    <div class="gamecontainer">
+            <div class="gameGrid"></div>
+            <div> Dogs left: <span id="flagsRemaining"></span> </div>
+            <div id="result"></div>
+        </div>
+    <div class="gamecontrols">
+            <span id="timer">Time: 0s</span>
+            <button id="restartBtn" style="display:none;">Restart Game</button>
+    </div>
+     
+   
+    <div id="stats">
+        <p>Games Played: <span id="gamesPlayed">0</span></p>
+        <p>Games Won: <span id="gamesWon">0</span></p>
+        <p>Total Time Played: <span id="totalTimePlayed">0</span> sec</p>
+    </div>
+
+    <!--  
+     <div class="game">
+        <div id="modeSelection">
+            <button id="easyMode">Easy Mode</button>
+            <button id="medianMode">Median Mode</button>
+            <button id="hardMode">Hard Mode</button>
+        </div>
+    
+   
+        
+    -->
+    <!-- JavaScript for game functionality -->
+    <script src="med.js"></script>
+</body>
+</html>
