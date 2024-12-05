@@ -1,1 +1,54 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play Game</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="mainMenu.html">Home</a></li>
+            <li><a href="gameIndex.html">Return to Mode Selection </a></li>
+            <li><a href="leaderboard.html">Leaderboard</a></li>
+        </ul>
+    </nav>
+    <div class="game-layout">
+        <!-- Game Grid Section -->
+        <div class="gamecontainer">
+            <div class="gameGridEasy"></div>
+            <div> Dogs left: <span id="flagsRemaining"></span> </div>
+            <div id="result"></div>
+            <div class="gamecontrols">
+                <span id="timer">Time: 0s</span>
+                <button id="restartBtn" style="display:none;">Restart Game</button>
+            </div>
+        </div>
+
+        <!-- Stats Section -->
+        <div id="stats">
+            <p>Games Played: <span id="gamesPlayed">0</span></p>
+            <p>Games Won: <span id="gamesWon">0</span></p>
+            <p>Total Time Played: <span id="totalTimePlayed">0h 0m 0s</span></p>
+        </div>
+    </div>
+
+
+        
+   <!--  
+  
+     <div class="game">
+        <div id="modeSelection">
+            <button id="easyMode">Easy Mode</button>
+            <button id="medianMode">Median Mode</button>
+            <button id="hardMode">Hard Mode</button>
+        </div>
+    
+   
+        
+    -->
+    <!-- JavaScript for game functionality -->
+    <script src="easy.js"></script>
+</body>
+</html>
